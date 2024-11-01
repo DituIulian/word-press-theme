@@ -1,0 +1,62 @@
+/* Theme Name: Ditu Iulian
+Template : twentytwentyfour
+Description: O tema luminata
+Theme URI : URL al paginii, unde poți găsi mai multe informații despre temă.
+Author: Ditu Iulian.
+Author URI : Adresa URL a persoanei sau a firmei care a creat tema.
+Version: 1.0
+License URI : Adresa URL a licenței.
+Text Domain :  Numele care va fi folosit pentru traducerea temei.
+Domain Path : Calea până la fișierul MO cu traducerea. Calea relativă la folderul temei. By default este `/languages`.
+Tags : Cuvinte sau fraze, separate prin virgulă, care ajută la găsirea/filtrarea temei. */
+
+.post {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+}
+
+.post-cat-three {
+    border: 1px solid #0047aa;
+    background-color: #e6f7ff;
+    margin-bottom: 12px;
+}
+
+h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+h2 a {
+    text-decoration: none;
+    color: #0073aa;
+ 
+}
+
+h2 a:hover {
+    color: #005177;
+   
+}
+
+small {
+    color: #777;
+    font-style: italic;
+}
+
+
+p {
+    color: rgb(15, 13, 13);
+   
+}
+
+.footer-widgets-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    border-style: solid;
+    background-color: #9ad0ea;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
