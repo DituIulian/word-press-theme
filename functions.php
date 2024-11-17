@@ -103,3 +103,218 @@ function wpb_init_widgets_custom($id)
     ));
 }
 add_action('widgets_init', 'wpb_init_widgets_custom');
+
+
+function contact_design($valori)
+{
+    return "<span class='p-2 d-inline-block bg-info'><span>";
+}
+add_shortcode("contactez", "contact_design");
+
+
+// Our custom post type function
+function create_my_custom_post_types_for_movies()
+{
+
+    register_post_type(
+        'my_movies',
+        // CPT Options
+        array(
+            'labels' => array(
+                'name' => __('Movies'),
+                'singular_name' => __('Movie')
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'movies'),
+            'show_in_rest' => true,
+            'supports'            => array('title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'custom-fields',),
+        )
+    );
+}
+// Hooking up our function to theme setup
+add_action('init', 'create_my_custom_post_types_for_movies');
+
+
+// Our custom post type function
+function create_my_custom_post_types_for_actors()
+{
+
+    register_post_type(
+        'my_actors',
+        // CPT Options
+        array(
+            'labels' => array(
+                'name' => __('Actors'),
+                'singular_name' => __('Actor')
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'actors'),
+            'show_in_rest' => true,
+            'supports'            => array('title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'custom-fields',),
+        )
+    );
+}
+// Hooking up our function to theme setup
+add_action('init', 'create_my_custom_post_types_for_actors');
+
+
+// Our custom post type function
+function create_my_custom_post_types_for_directors()
+{
+
+    register_post_type(
+        'my_directors',
+        // CPT Options
+        array(
+            'labels' => array(
+                'name' => __('Directors'),
+                'singular_name' => __('Director')
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'directors'),
+            'show_in_rest' => true,
+            'supports'            => array('title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'custom-fields',),
+        )
+    );
+}
+// Hooking up our function to theme setup
+add_action('init', 'create_my_custom_post_types_for_directors');
+
+
+//create a custom taxonomy name it genres for your posts
+function create_my_custom_taxonomie_genre()
+{
+
+    // Add new taxonomy, make it hierarchical like categories
+    //first do the translations part for GUI
+
+    $labels_for_genre = array(
+        'name' => _x('Genres', 'taxonomy general name'),
+        'singular_name' => _x('Genre', 'taxonomy singular name'),
+        'search_items' =>  __('Search Genres'),
+        'all_items' => __('All Genres'),
+        'parent_item' => __('Parent Genre'),
+        'parent_item_colon' => __('Parent Genre:'),
+        'edit_item' => __('Edit Genre'),
+        'update_item' => __('Update Genre'),
+        'add_new_item' => __('Add New Genre'),
+        'new_item_name' => __('New Genre Name'),
+        'menu_name' => __('Genres'),
+    );
+
+    // Now register the taxonomy
+    register_taxonomy('my_genres', array('my_movies'), array(
+        'labels' => $labels_for_genre,
+        'hierarchical' => true,
+        'show_ui' => true,
+        'show_in_rest' => true,
+        'show_admin_column' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'genre'),
+    ));
+}
+
+//hook into the init action and call create_my_custom_taxonomies when it fires
+add_action('init', 'create_my_custom_taxonomie_genre', 0);
+
+
+//create a custom taxonomy name it genres for your posts
+function create_my_custom_taxonomie_year()
+{
+
+    // Add new taxonomy, make it hierarchical like categories
+    //first do the translations part for GUI
+
+    $labels_for_year = array(
+        'name' => _x('Years', 'taxonomy general name'),
+        'singular_name' => _x('Year', 'taxonomy singular name'),
+        'search_items' =>  __('Search Years'),
+        'all_items' => __('All Years'),
+        'parent_item' => __('Parent Year'),
+        'parent_item_colon' => __('Parent Year:'),
+        'edit_item' => __('Edit Year'),
+        'update_item' => __('Update Year'),
+        'add_new_item' => __('Add New Year'),
+        'new_item_name' => __('New Year Name'),
+        'menu_name' => __('Years'),
+    );
+
+    // Now register the taxonomy
+    register_taxonomy('my_years', array('my_movies'), array(
+        'labels' => $labels_for_year,
+        'hierarchical' => true,
+        'show_ui' => true,
+        'show_in_rest' => true,
+        'show_admin_column' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'year'),
+    ));
+}
+
+//hook into the init action and call create_my_custom_taxonomies when it fires
+add_action('init', 'create_my_custom_taxonomie_year', 0);
+
+
+add_action('mb_relationships_init', function () {
+    MB_Relationships_API::register([
+        'id'   => 'movies_to_actors',
+        'from' => [
+            'post_type' => 'my_movies',
+            'meta_box'    => [
+                'title' => 'Actors',
+            ],
+        ],
+        'to'   => [
+            'post_type'   => 'my_actors',
+            'meta_box'    => [
+                'title' => 'Movies',
+            ],
+        ],
+    ]);
+
+    MB_Relationships_API::register([
+        'id'   => 'movies_to_directors',
+        'from' => [
+            'post_type' => 'my_movies',
+            'meta_box'    => [
+                'title' => 'Directors',
+            ],
+        ],
+        'to'   => [
+            'post_type'   => 'my_directors',
+            'meta_box'    => [
+                'title' => 'Movies',
+            ],
+        ],
+    ]);
+});
+
+
+function check_old_movie($release_date)
+{
+    $today = date("Y");
+    if ($today - $release_date >= 40) {
+        return   "<p class='badge bg-danger text-wrap'>" . $release_date . " Old movie: *" . ($today - $release_date) . " years ago*</p>";
+    } else {
+        return  "<p class='badge bg-success text-wrap'>Release date:</p> " . $release_date;
+    }
+}
+
+function runtimePrettier($minute)
+{
+    if ($minute <= 0) {
+        return "Unknown";
+    }
+
+    $ore = floor($minute / 60);
+    $minuteRamase = $minute - ($ore * 60);
+
+    if ($ore > 0) {
+        return "<strong>Runtime:</strong> $ore hours $minuteRamase minutes";
+    } else {
+        return "<strong>Runtime:</strong> $minuteRamase minutes";
+    }
+}
