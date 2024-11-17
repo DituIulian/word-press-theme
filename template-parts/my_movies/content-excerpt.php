@@ -1,35 +1,22 @@
 <div class="card">
-    <img class=" card-img-top img-thumbnail " src="<?php echo $movie['posterUrl']; ?>" alt="<?php echo $movie['title']; ?>">
+    <?php
+    if (has_post_thumbnail()) { ?>
+        <?php the_post_thumbnail('full', ['class' => 'img-fluid', 'alt' => 'poster']); ?>
+    <?php
+    } else { ?>
+        <img src=" https://ih1.redbubble.net/image.1861329650.2941/cposter,large,product,750x1000.2.jpg" class="img-fluid">
+    <?php } ?>
     <div class="card-body ">
-        <h5 class="card-title"><?php echo $movie['title']; ?></h5>
-        <span class="card-subtitle text-primary"><?php echo implode(", ", $movie['genres']); ?></span>
+        <h5 class="card-title"><?php the_title(); ?></h5>
+        <span class="card-subtitle text-primary"><?php echo get_the_term_list($post->ID, 'my_genres', '', ',  ');; ?></span>
         <p class="card-text">
             <?php
-            $limitaCaractere = 100;
-            if (strlen($movie['plot']) <= $limitaCaractere && strlen($movie['plot']) != 0) {
-                echo ($movie['plot']);
-            } else {
-                $rezultatFix =  substr($movie['plot'], 0, $limitaCaractere);
-                echo $rezultatFix . " ...";
-            }
+            echo wp_trim_words(get_the_content(), 30, '...');
 
             ?>
         </p>
     </div>
     <div class="card-footer">
-        <a href="movie.php?movie_id=<?php echo $movie['id']; ?>"> <button class="btn btn-success">Read More </button></a>
+        <a href="<?php echo get_permalink() ?>"> <button class="btn btn-success">Read More </button></a>
     </div>
-</div>
-
-
-
-<div class="entry">
-    <?php
-    if (is_single()) {
-        // Afișează întregul conținut dacă este o postare individuală
-        the_content();
-    } else {
-        // Afiseaza doar primele 45 de cuvinte pentru a nu incarca pagina
-        echo wp_trim_words(get_the_content(), 45, '...');
-    } ?>
 </div>

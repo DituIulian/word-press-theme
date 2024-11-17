@@ -47,13 +47,13 @@ add_action('after_setup_theme', 'theme_setup');
 function add_css_and_js()
 {
     // css din bootstrap
-    wp_enqueue_style('bootstrap-css', get_template_directory_uri() . '/modules/dist/css/bootstrap.css');
+    wp_enqueue_style('bootstrap-css', get_template_directory_uri() . '/modules/dist/css/bootstrap.min.css');
 
     //css creat de mine
     wp_enqueue_style('style', get_template_directory_uri() . '/style.css');
 
     // js din bootstrap
-    wp_enqueue_script('my-script', get_template_directory_uri() . '/modules/dist/js/bootstrap.js', array('jquery'), null, true);
+    wp_enqueue_script('my-script', get_template_directory_uri() . '/modules/dist/js/bootstrap.min.js', array('jquery'), null, true);
 }
 add_action('wp_enqueue_scripts', 'add_css_and_js');
 
@@ -297,9 +297,9 @@ function check_old_movie($release_date)
 {
     $today = date("Y");
     if ($today - $release_date >= 40) {
-        return   "<p class='badge bg-danger text-wrap'>" . $release_date . " Old movie: *" . ($today - $release_date) . " years ago*</p>";
+        return   "<p class='badge bg-danger text-wrap'>" . ' ' . " Old movie: *" . ($today - $release_date) . " years ago*</p>";
     } else {
-        return  "<p class='badge bg-success text-wrap'>Release date:</p> " . $release_date;
+        return  "<p class='badge bg-success text-wrap'>Release date:</p> " . ' ';
     }
 }
 

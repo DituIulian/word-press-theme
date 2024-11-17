@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light" role="navigation">
-    <div class="container">
+<div class="container">
+    <nav class="navbar navbar-expand-md navbar-light" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <?php $blog_title = get_bloginfo('url'); ?>
@@ -22,5 +22,5 @@
             'walker'            => new WP_Bootstrap_Navwalker(),
         ));
         ?>
-    </div>
+</div>
 </nav>

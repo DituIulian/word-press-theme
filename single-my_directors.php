@@ -25,39 +25,25 @@ if (have_posts()):
                     <div class="col-auto">
                         <h1><?php echo the_title(); ?></h1>
                     </div>
-
                     <div class="col-auto">
-
-
-
                     </div>
                 </div>
 
-                <p><?php
-                    $year = get_the_term_list($post->ID, 'my_years');
-                    $terms = wp_get_post_terms($post->ID, 'my_years', ['fields' => 'names']);
-                    echo check_old_movie(intval($terms[0]));
-                    echo $year;
-
-
-                    ?></p>
-                <p><strong>Genres:</strong>
-                    <span class="mx-3"><?php echo get_the_term_list($post->ID, 'my_genres', '', ',  '); ?></span>
-                </p>
-                <p><?php echo runtimePrettier(get_field('my_runtime')); ?></p>
 
                 <?php
+                echo "<strong>Description: </strong> " . "Yet not set" . the_content();
+
                 $connected = new WP_Query([
                     'relationship' => [
                         'id'   => 'movies_to_directors',
-                        'from' => get_the_ID(),
+                        'to' => get_the_ID(),
                     ],
                     'nopaging'     => true,
                 ]);
                 if ($connected->have_posts()) {
                     echo "<div class='directors'>";
 
-                    echo __('<strong>Directors</strong>', 'text_domain') . ": ";
+                    echo __('<strong>Movies</strong>', 'text_domain') . ": ";
 
                     $i = 0;
                     while ($connected->have_posts()) {
@@ -77,48 +63,14 @@ if (have_posts()):
                 unset($connected);
                 ?>
 
-                <?php
-                $connected = new WP_Query([
-                    'relationship' => [
-                        'id'   => 'movies_to_actors',
-                        'from' => get_the_ID(),
-                    ],
-                    'nopaging'     => true,
-                ]);
-                if ($connected->have_posts()) {
-                    echo "<div class='actors'>";
-
-                    echo __('<strong>Actors</strong>', 'text_domain') . ": ";
-
-                    $i = 0;
-                    while ($connected->have_posts()) {
-                        $connected->the_post();
-
-                        if ($i !== 0) {
-                        }
-                        echo  "<li>" . "<a href='" . get_the_permalink() . "'>" . get_the_title() . "</a>";
-                        $i++;
-                        echo "</li>";
-                    }
-                    wp_reset_postdata();
-                    unset($i);
-
-                    echo "</div>";
-                }
-                unset($connected);
-
-
-
-                ?>
 
 
             </div>
         </div>
 
 
-
 <?php
-        the_content();
+
 
     endwhile;
 endif;

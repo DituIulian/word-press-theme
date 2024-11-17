@@ -3,8 +3,9 @@
     echo get_bloginfo('url');
     echo "<br>";
     $today = date("Y");
-    echo $today;
+    echo "<strong>" . $today .
+        "©Copyright, all rights reserved" . "</strong>";
+
     ?>
-    ©Copyright, all rights reserved
 
 </div>

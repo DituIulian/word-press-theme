@@ -53,10 +53,30 @@ p {
 .footer-widgets-container {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 10px;
     border-style: solid;
-    background-color: #9ad0ea;
+    background-color: #b385f8;
     margin-bottom: 10px;
     margin-top: 10px;
+    padding: 15px;
+}
+.navbar{
+    background-color: #b385f8;
 }
 
+.nav-link {
+    color: black;
+    margin-right: 8px;
+}
+
+.nav-link:hover {
+    color: rgb(230, 94, 94);
+    margin-right: 8px;
+    font-size: 110%;
+}
+
+.card img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
