@@ -36,8 +36,8 @@ if (have_posts()):
                 <p><?php
                     $year = get_the_term_list($post->ID, 'my_years');
                     $terms = wp_get_post_terms($post->ID, 'my_years', ['fields' => 'names']);
-                    echo check_old_movie(intval($terms[0]));
-                    echo $year;
+                    echo check_old_movie(intval($terms[0])) . $year;
+
 
 
                     ?></p>

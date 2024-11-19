@@ -15,7 +15,7 @@ if (have_posts()):
                 if (has_post_thumbnail()) {
                     the_post_thumbnail('full', ['class' => 'img-fluid', 'alt' => 'poster']);
                 } else { ?>
-                    <img src="https://ih1.redbubble.net/image.1861329650.2941/cposter,large,product,750x1000.2.jpg" class="img-fluid">
+                    <img src="https://louisville.edu/artsandsciences/advising/student-services/as-student-council/images/image-not-available/image" class="img-fluid">
                 <?php } ?>
 
 
@@ -61,9 +61,9 @@ if (have_posts()):
                     echo "</div>";
                 }
                 unset($connected);
+
+
                 ?>
-
-
 
             </div>
         </div>

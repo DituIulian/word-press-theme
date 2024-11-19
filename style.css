@@ -52,17 +52,19 @@ p {
 
 .footer-widgets-container {
     display: flex;
+    flex-flow: row wrap;
     justify-content: space-between;
-    gap: 10px;
     border-style: solid;
-    background-color: #b385f8;
+    background-color: #4169e1;
     margin-bottom: 10px;
     margin-top: 10px;
     padding: 15px;
 }
 .navbar{
-    background-color: #b385f8;
+    background-color: #4169e1;
+    border-style: solid;
 }
+
 
 .nav-link {
     color: black;
@@ -79,4 +81,32 @@ p {
     object-fit: cover;
     height: 100%;
     width: 100%;
+}
+
+
+.elementor-widget-button .elementor-button {
+    background-color: #0047aa !important;
+    border-image: linear-gradient(to right, #00ff2a , #ff32d6) 1;
+    border-style: solid;
+}
+
+.form-control{
+  caret-color: red;
+  background-color: #d7e2ff !important;
+}
+
+.buton-read-more-taxonomy{
+    
+            background-color: #0047aa !important;
+            border-image: linear-gradient(to right, #00ff2a, #ff32d6) 1;
+            border-style: solid ;
+            border-width: 2px;
+}
+
+.buton-read-more-carduri{
+    border-image: linear-gradient(to right, #1500ff, #e4f004, rgb(236, 20, 20)) 1;
+    border-style: solid;
+    border-width: 2px;
+    border-image-width: 40px;
+
 }

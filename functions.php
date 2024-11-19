@@ -105,11 +105,17 @@ function wpb_init_widgets_custom($id)
 add_action('widgets_init', 'wpb_init_widgets_custom');
 
 
-function contact_design($valori)
+function contact_design()
 {
-    return "<span class='p-2 d-inline-block bg-info'><span>";
+    return "<div class='p-2 d-inline-block bg-info'><div>";
 }
 add_shortcode("contactez", "contact_design");
+
+function set_new_cookie($contact_form)
+{
+    setcookie("form_submitted", 1, time() + (86400 * 30 * 12));
+}
+add_action('wpcf7_mail_sent', 'set_new_cookie');
 
 
 // Our custom post type function
@@ -318,3 +324,24 @@ function runtimePrettier($minute)
         return "<strong>Runtime:</strong> $minuteRamase minutes";
     }
 }
+
+
+function decupare_cuvinte()
+{
+    echo wp_trim_words(get_the_content(), 15, ' ...');
+}
+add_action('trim_with_brackets', 'decupare_cuvinte',);
+
+
+
+function modifica_ordonare_actor_director($query)
+{
+
+    // Verificăm dacă este pagina de arhivă pentru "director" sau "actor"
+    if (is_post_type_archive('my_directors') || is_post_type_archive('my_actors')) {
+        $query->set('orderby', 'title'); // Ordonează după titlu
+        $query->set('order', 'ASC'); // Crescător
+    }
+}
+
+add_action('pre_get_posts', 'modifica_ordonare_actor_director');

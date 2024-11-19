@@ -5,16 +5,6 @@ get_template_part('assets/parts/sidebar');
 
 
 
-// if (have_posts()) {
-//     while (have_posts()) {
-//         the_post();
-
-//         // Post Content here
-//         the_title(); // Această linie de cod va afișa titlul postării 
-//         echo "<br>" . "<br>";
-//     } // end while
-// } // end if
-
 
 if (have_posts()) : while (have_posts()) : the_post(); ?>
 

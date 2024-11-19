@@ -10,13 +10,14 @@
         <h5 class="card-title"><?php the_title(); ?></h5>
         <span class="card-subtitle text-primary"><?php echo get_the_term_list($post->ID, 'my_genres', '', ',  ');; ?></span>
         <p class="card-text">
-            <?php
-            echo wp_trim_words(get_the_content(), 30, '...');
 
+            <?php
+            do_action('trim_with_brackets');
             ?>
+
         </p>
     </div>
     <div class="card-footer">
-        <a href="<?php echo get_permalink() ?>"> <button class="btn btn-success">Read More </button></a>
+        <a href="<?php echo get_permalink() ?>"> <button class="btn btn-success buton-read-more-carduri">Read More </button></a>
     </div>
 </div>

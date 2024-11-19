@@ -15,7 +15,7 @@ if (have_posts()):
                 if (has_post_thumbnail()) {
                     the_post_thumbnail('full', ['class' => 'img-fluid', 'alt' => 'poster']);
                 } else { ?>
-                    <img src="https://ih1.redbubble.net/image.1861329650.2941/cposter,large,product,750x1000.2.jpg" class="img-fluid">
+                    <img src="https://www.wpclipart.com/dl.php?img=/people/faces/anonymous/photo_not_available_BW_T.png" class="img-fluid">
                 <?php } ?>
 
 

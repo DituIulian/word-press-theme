@@ -4,7 +4,9 @@
 
 get_template_part('assets/parts/header');
 
-if (have_posts()):
+if (have_posts()): ?>
+    <h1> <?php single_term_title(); ?> </h1>
+    <?php
     while (have_posts()):
         the_post(); ?>
         <small><?php the_time('F jS, Y'); ?> by <?php the_author_posts_link(); ?></small>
@@ -35,7 +37,7 @@ if (have_posts()):
                 the_content();
 
                 ?>
-                <a href="<?php echo get_permalink() ?>"> <button class="btn btn-success">Read More </button></a>
+                <a href="<?php echo get_permalink() ?>"> <button class="btn btn-success buton-read-more-taxonomy">Read More </button></a>
 
 
             </div>
