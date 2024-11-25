@@ -4,7 +4,7 @@ get_template_part('assets/parts/header');
 if (have_posts()):
     while (have_posts()):
         the_post(); ?>
-        <small><?php the_time('F jS, Y'); ?> by <?php the_author_posts_link(); ?></small>
+
 
 
         <div class="row gx-2">
@@ -36,7 +36,7 @@ if (have_posts()):
                 <p><?php
                     $year = get_the_term_list($post->ID, 'my_years');
                     $terms = wp_get_post_terms($post->ID, 'my_years', ['fields' => 'names']);
-                    echo check_old_movie(intval($terms[0])) . $year;
+                    echo check_old_movie(intval($terms[0])) .  '   ' . $year;
 
 
 
@@ -44,8 +44,18 @@ if (have_posts()):
                 <p><strong>Genres:</strong>
                     <span class="mx-3"><?php echo get_the_term_list($post->ID, 'my_genres', '', ',  '); ?></span>
                 </p>
-                <p><?php echo runtimePrettier(get_field('my_runtime')); ?></p>
 
+
+                <!-- Echo de runtime formatat din main.js -->
+                <?php $runtime = get_field('my_runtime'); ?>
+                <div id="movie-length-container">
+                    <span id="movie-length" data-runtime="<?php echo $runtime; ?>"> <?php echo '<strong>Runtime: </strong>' . $runtime; ?> </span>
+                    <button id="toggle-format" class="toggle-btn runtime-button">Runtime</button>
+                </div>
+
+
+
+                <!-- Relatia movie to directors definita cu link catre pagina regizor-->
                 <?php
                 $connected = new WP_Query([
                     'relationship' => [
@@ -77,6 +87,7 @@ if (have_posts()):
                 unset($connected);
                 ?>
 
+                <!-- Relatia movie to actors definita cu link catre pagina actor-->
                 <?php
                 $connected = new WP_Query([
                     'relationship' => [

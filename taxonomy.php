@@ -9,8 +9,6 @@ if (have_posts()): ?>
     <?php
     while (have_posts()):
         the_post(); ?>
-        <small><?php the_time('F jS, Y'); ?> by <?php the_author_posts_link(); ?></small>
-
 
         <div class="row gx-2">
             <div

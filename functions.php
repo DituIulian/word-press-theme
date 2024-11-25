@@ -303,9 +303,9 @@ function check_old_movie($release_date)
 {
     $today = date("Y");
     if ($today - $release_date >= 40) {
-        return   "<p class='badge bg-danger text-wrap'>" . ' ' . " Old movie: *" . ($today - $release_date) . " years ago*</p>";
+        return   "<p class='badge bg-danger text-wrap'>" . "Old movie: " . ($today - $release_date) . " years ago:</p>";
     } else {
-        return  "<p class='badge bg-success text-wrap'>Release date:</p> " . ' ';
+        return  "<p class='badge bg-success text-wrap'>Release date:</p> " . '  ';
     }
 }
 
@@ -337,11 +337,29 @@ add_action('trim_with_brackets', 'decupare_cuvinte',);
 function modifica_ordonare_actor_director($query)
 {
 
-    // Verificăm dacă este pagina de arhivă pentru "director" sau "actor"
+
     if (is_post_type_archive('my_directors') || is_post_type_archive('my_actors')) {
-        $query->set('orderby', 'title'); // Ordonează după titlu
-        $query->set('order', 'ASC'); // Crescător
+        $query->set('orderby', 'title');
+        $query->set('order', 'ASC');
     }
 }
 
 add_action('pre_get_posts', 'modifica_ordonare_actor_director');
+
+
+wp_enqueue_script('mainJS', './assets/js/main.js');
+
+
+function enqueue_preloader_scripts()
+{
+    // Sprit pentru preloader
+    wp_enqueue_script('preloader-script', get_template_directory_uri() . './assets/js/main.js', array(), '1.0', true);
+}
+add_action('wp_enqueue_scripts', 'enqueue_preloader_scripts');
+
+
+function enqueue_movie_length_script()
+{
+    wp_enqueue_script('movie-length-script', get_template_directory_uri() . './assets/js/main.js', array(), '1.0', true);
+}
+add_action('wp_enqueue_scripts', 'enqueue_movie_length_script');
