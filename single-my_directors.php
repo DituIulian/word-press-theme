@@ -7,8 +7,7 @@ if (have_posts()):
 
 
         <div class="row gx-2">
-            <div
-                class="col-lg-3 col-md-6 mt-3 mb-3">
+            <div class="col-lg-3 col-md-6 mt-3 mb-3">
 
                 <?php
                 if (has_post_thumbnail()) {
@@ -38,36 +37,36 @@ if (have_posts()):
                         'to' => get_the_ID(),
                     ],
                     'nopaging'     => true,
-                ]);
-                if ($connected->have_posts()) {
-                    echo "<div class='directors'>";
+                ]); ?>
 
-                    echo __('<strong>Movies</strong>', 'text_domain') . ": ";
 
-                    $i = 0;
-                    while ($connected->have_posts()) {
-                        $connected->the_post();
 
-                        if ($i !== 0) {
+                <?php if ($connected->have_posts()) { ?>
+                    <div class='container'>
+                        <div class='row'>
+                            <?php echo __('<strong>Movies: </strong>', 'text_domain');
+
+
+                            while ($connected->have_posts()) { ?>
+                                <?php $connected->the_post(); ?>
+
+                                <div class="col-lg-4 col-md-12 mt-3 d-flex align-items-stretch mb-3">
+                                    <?php get_template_part('template-parts/my_movies/content', 'excerpt'); ?>
+                                </div>
+
+
+                        <?php
+                            }
                         }
-                        echo  "<li>" . "<a href='" . get_the_permalink() . "'>" . get_the_title() . "</a>";
-                        $i++;
-                        echo "</li>";
-                    }
-                    wp_reset_postdata();
-                    unset($i);
-
-                    echo "</div>";
-                }
-                unset($connected);
+                        unset($connected);
 
 
-                ?>
+                        ?>
 
+                        </div>
+                    </div>
             </div>
         </div>
-
-
 <?php
 
 

@@ -40,29 +40,27 @@ if (have_posts()):
                     ],
                     'nopaging'     => true,
                 ]);
-                if ($connected->have_posts()) {
-                    echo "<div class='actors'>";
+                if ($connected->have_posts()) { ?>
 
-                    echo __('<strong>Movies</strong>', 'text_domain') . ": ";
+                    <div class='container'>
+                        <div class='row'>
+                            <?php echo __('<strong>Movies: </strong>', 'text_domain');
 
-                    $i = 0;
-                    while ($connected->have_posts()) {
-                        $connected->the_post();
+                            while ($connected->have_posts()) { ?>
+                                <?php $connected->the_post(); ?>
 
-                        if ($i !== 0) {
+                                <div class="col-lg-4 col-md-12 mt-3 d-flex align-items-stretch mb-3">
+                                    <?php get_template_part('template-parts/my_movies/content', 'excerpt'); ?>
+                                </div>
+
+                        <?php
+                            }
                         }
-                        echo  "<li>" . "<a href='" . get_the_permalink() . "'>" . get_the_title() . "</a>";
-                        $i++;
-                        echo "</li>";
-                    }
-                    wp_reset_postdata();
-                    unset($i);
+                        unset($connected);
+                        ?>
 
-                    echo "</div>";
-                }
-                unset($connected);
-                ?>
-
+                        </div>
+                    </div>
 
 
             </div>

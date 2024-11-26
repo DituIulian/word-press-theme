@@ -16,7 +16,7 @@ if (have_posts()):
                     the_post_thumbnail('full', ['class' => 'img-fluid', 'alt' => 'poster']);
                 } else { ?>
                     <img src="https://ih1.redbubble.net/image.1861329650.2941/cposter,large,product,750x1000.2.jpg" class="img-fluid">
-                <?php } ?>
+                <?php }  ?>
 
 
             </div>
@@ -48,9 +48,9 @@ if (have_posts()):
 
                 <!-- Echo de runtime formatat din main.js -->
                 <?php $runtime = get_field('my_runtime'); ?>
-                <div id="movie-length-container">
-                    <span id="movie-length" data-runtime="<?php echo $runtime; ?>"> <?php echo '<strong>Runtime: </strong>' . $runtime; ?> </span>
-                    <button id="toggle-format" class="toggle-btn runtime-button">Runtime</button>
+                <div id="movie-runtime-container">
+                    <span id="movie-runtime" data-runtime="<?php echo $runtime; ?>"> <?php echo '<strong>Runtime: </strong>' . $runtime . ' minutes'; ?> </span>
+                    <button id="toggle-format" class="toggle-btn runtime-button">Runtime </button>
                 </div>
 
 

@@ -2,46 +2,29 @@
 
 // Apoi, afișăm taxonomiile "my_genres" și "my_years".
 
-get_template_part('assets/parts/header');
+get_template_part('assets/parts/header'); ?>
+<h1> <?php single_term_title(); ?> </h1>
 
-if (have_posts()): ?>
-    <h1> <?php single_term_title(); ?> </h1>
-    <?php
-    while (have_posts()):
-        the_post(); ?>
-
-        <div class="row gx-2">
-            <div
-                class="col-lg-3 col-md-6 mt-3 mb-3">
-
-                <?php
-                if (has_post_thumbnail()) {
-                    the_post_thumbnail('full', ['class' => 'img-fluid', 'alt' => 'poster']);
-                } else { ?>
-                    <img src="https://ih1.redbubble.net/image.1861329650.2941/cposter,large,product,750x1000.2.jpg" class="img-fluid">
-                <?php } ?>
-
-            </div>
-            <div class="col-lg-9 col-md-6 mt-3">
-                <div class="row">
-                    <div class="col-auto">
-                        <h1><?php echo the_title(); ?></h1>
-                    </div>
-                    <div class="col-auto">
-                    </div>
+<div class="container ">
+    <div class="row">
+        <?php
+        if (have_posts()) : while (have_posts()) : the_post(); ?>
+                <div class="col-lg-4 col-md-6 mt-3 d-flex align-items-stretch mb-3">
+                    <?php
+                    get_template_part('template-parts/my_movies/content', 'excerpt');
+                    ?>
                 </div>
 
-                <?php
-                the_content();
+            <?php endwhile;
+        else :
+            ?>
 
-                ?>
-                <a href="<?php echo get_permalink() ?>"> <button class="btn btn-success buton-read-more-taxonomy">Read More </button></a>
+            <p><?php esc_html_e('Sorry, no posts matched your criteria.'); ?></p>
 
+        <?php endif; ?>
 
-            </div>
-        </div>
-
-
+    </div>
+</div>
 
 
 
@@ -49,8 +32,6 @@ if (have_posts()): ?>
 <?php
 
 
-    endwhile;
-endif;
 
 
 

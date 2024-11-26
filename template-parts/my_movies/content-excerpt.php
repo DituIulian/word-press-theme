@@ -6,7 +6,7 @@
     } else { ?>
         <img src=" https://ih1.redbubble.net/image.1861329650.2941/cposter,large,product,750x1000.2.jpg" class="img-fluid">
     <?php } ?>
-    <div class="card-body ">
+    <div class="card-body">
         <h5 class="card-title"><?php the_title(); ?></h5>
         <span class="card-subtitle text-primary"><?php echo get_the_term_list($post->ID, 'my_genres', '', ',  ');; ?></span>
         <p class="card-text">

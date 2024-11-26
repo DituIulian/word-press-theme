@@ -54,15 +54,15 @@ p {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    border-style: solid;
-    background-color: #4169e1;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    padding: 15px;
+    border-radius: 6px;
+    background-color: #edeff6;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 5px;
 }
 .navbar{
-    background-color: #4169e1;
-    border-style: solid;
+    background-color: #edeff6;
+    border-radius: 6px;
 }
 
 
@@ -96,19 +96,12 @@ p {
   border-radius: 6px !important;
 }
 
-.buton-read-more-taxonomy{
-    
-            background-color: #0047aa !important;
-            border-image: linear-gradient(to right, #00ff2a, #ff32d6) 1;
-            border-style: solid ;
-            border-width: 2px;
-}
 
 .buton-read-more-carduri{
-    border-image: linear-gradient(to right, #1500ff, #e4f004, rgb(236, 20, 20)) 1;
-    border-style: solid;
+
     border-width: 2px;
-    border-image-width: 40px;
+    border-image-width: 3px;
+    border-radius: 6px ;
 
 }
 
@@ -131,7 +124,7 @@ p {
 .sk-fading-circle .sk-circle:before {
     content: 'L O A D I N G';
     display: block;
-    margin: 0 auto;
+    margin: 150px;
     width: 15%;
     height: 15%;
     background-color: #333;
